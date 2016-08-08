@@ -13,7 +13,7 @@
 template <typename T>
 class Optional
 {
-	using data_t = typename std::aligned_storage<sizeof(T), std::aligment_of<T>::value>::type;
+	using data_t = typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type;
 public:
 	Optional() { }
 	Optional(const T& v)
@@ -36,7 +36,7 @@ public:
 	void Emplace(Args&&... args)
 	{
 		Destory();
-		Create(std::forword<Args>(args)...);
+		Create(std::forward<Args>(args)...);
 	}
 
 	bool IsInit() const { return m_hasInit; }
@@ -63,7 +63,7 @@ private:
 		m_hasInit = true;
 	}
 
-	void Destory
+	void Destory()
 	{
 		if (m_hasInit)
 		{
@@ -76,7 +76,7 @@ private:
 	{
 		if (other.IsInit())
 		{
-			Copy(Other.m_data);
+			Copy(other.m_data);
 			m_hasInit = true;
 		}
 		else 
