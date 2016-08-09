@@ -23,10 +23,10 @@ public:
 	using size_type = typename iterator::size_type;
 
 private:
-	const value_type begin_;
-	const value_type end_;
-	const value_type step_;
-	const size_type  max_count_;
+	const value_type begin_;        //迭代器中begin的值
+	const value_type end_;          //迭代器中end的值
+    const value_type step_;         //代步长
+	const size_type  max_count_;    //迭代次数
 
 	size_type get_adjusted_count(void) const
 	{

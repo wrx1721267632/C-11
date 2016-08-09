@@ -16,15 +16,15 @@ public:
 	using size_type = size_t;
 
 private:
-	size_type 		 cursor_;
-	const value_type step_;
-	value_type 		 value_;
+	size_type 		 cursor_;   //迭代次数
+	const value_type step_;     //迭代步长
+	value_type 		 value_;    //初始值
 
 public:
 	iterator(size_type cur_start, value_type begin_val, value_type step_val)
 						:cursor_(cur_start), step_(step_val), value_(begin_val)
 	{
-		value_ += (step_ * cursor_);
+		value_ += (step_ * cursor_);    //通过定义次数cursor_为0或max得到impl对应的begin或者end
 	}
 
 	value_type operator*() const
