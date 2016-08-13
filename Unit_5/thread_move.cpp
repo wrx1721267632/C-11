@@ -19,7 +19,6 @@ void func()
 int main()
 {
     std::thread t(func);
-    sleep(1);
     std::thread t1(std::move(t));
     // t.join();
     t1.join();
