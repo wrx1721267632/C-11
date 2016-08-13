@@ -7,12 +7,12 @@
 
 #include<iostream>
 #include<thread>
-#include<unistd.h>
+#include<chrono>
 using namespace std;
 
 void func(int a, int b, int c)
 {
-    sleep(3);
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     cout << a << " " << b << " " << c << endl;
 }
 
@@ -24,8 +24,10 @@ int main()
     t2.detach();
     cout << "after t2 ,main is runing" << endl;
     //std::thread t3(func, 3, 4, 5);
-    std::thread t4([](int a, int b, int c){sleep(5); cout << a << " " << b << " " << c << endl;}, 4,5,6);
+    std::thread t4([](int a, int b, int c){std::this_thread::sleep_for(std::chrono::seconds(5)); cout << a << " " << b << " " << c << endl;}, 4,5,6);
     t4.join();
+
+    cout << "CPU: " << thread::hardware_concurrency() << endl;
     
     return 0;
 }
